@@ -221,7 +221,9 @@ func (d *TdxDevice) AddAttestation(attestation *pb.Attestation, opts AttestOpts)
 	if err != nil {
 		return err
 	}
+	fmt.Println("Creating quote with tdx device")
 	quote, err := tg.GetQuote(d.Device, tdxNonce)
+	fmt.Printf("Got quote %x", quote)
 	if err != nil {
 		return err
 	}
