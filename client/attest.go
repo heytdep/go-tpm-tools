@@ -274,6 +274,7 @@ func (qp *TdxQuoteProvider) AddAttestation(attestation *pb.Attestation, opts Att
 		return err
 	}
 	quote, err := tg.GetQuote(qp.QuoteProvider, tdxNonce)
+	fmt.Println("got tdx quote %x", quote)
 	if err != nil {
 		return err
 	}
@@ -313,6 +314,7 @@ func setTeeAttestationTdxQuote(quote any, attestation *pb.Attestation) error {
 func getTEEAttestationReport(attestation *pb.Attestation, opts AttestOpts) error {
 	device := opts.TEEDevice
 	if device != nil {
+		fmt.Println("using specified device")
 		return device.AddAttestation(attestation, opts)
 	}
 
@@ -333,6 +335,7 @@ func getTEEAttestationReport(attestation *pb.Attestation, opts AttestOpts) error
 	if quoteProvider, err := CreateTdxQuoteProvider(); err == nil {
 		// Don't return errors if the attestation collection fails, since
 		// the user didn't specify a TEEDevice.
+		fmt.Println("not specified trying tdx")
 		quoteProvider.AddAttestation(attestation, opts)
 		quoteProvider.Close()
 		return nil
@@ -392,6 +395,7 @@ func (k *Key) Attest(opts AttestOpts) (*pb.Attestation, error) {
 		}
 	}
 
+	fmt.Println("Getting tee attestation")
 	if err := getTEEAttestationReport(&attestation, opts); err != nil {
 		return nil, fmt.Errorf("collecting TEE attestation report: %w", err)
 	}
