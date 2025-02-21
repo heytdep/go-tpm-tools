@@ -245,6 +245,7 @@ func (d *TdxDevice) Close() error {
 // that allows it to add an attestation quote to pb.Attestation.
 func CreateTdxQuoteProvider() (*TdxQuoteProvider, error) {
 	qp, err := tg.GetQuoteProvider()
+	fmt.Printf("got tdx quote provider ")
 	if err != nil {
 		return nil, err
 	}
@@ -274,7 +275,7 @@ func (qp *TdxQuoteProvider) AddAttestation(attestation *pb.Attestation, opts Att
 		return err
 	}
 	quote, err := tg.GetQuote(qp.QuoteProvider, tdxNonce)
-	fmt.Println("got tdx quote %x", quote)
+	fmt.Printf("got tdx quote")
 	if err != nil {
 		return err
 	}
