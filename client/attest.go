@@ -351,6 +351,7 @@ func getTEEAttestationReport(attestation *pb.Attestation, opts AttestOpts) error
 //
 //	attestation, err := key.Attest(client.AttestOpts{Nonce: my_nonce})
 func (k *Key) Attest(opts AttestOpts) (*pb.Attestation, error) {
+	fmt.Println("In attestation client")
 	if len(opts.Nonce) == 0 {
 		return nil, fmt.Errorf("provided nonce must not be empty")
 	}
