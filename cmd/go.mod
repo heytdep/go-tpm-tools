@@ -12,6 +12,7 @@ require (
 	github.com/google/go-tdx-guest v0.3.2-0.20241009005452-097ee70d0843
 	github.com/google/go-tpm v0.9.0
 	github.com/google/go-tpm-tools v0.4.4
+	github.com/google/go-tpm-tools v0.4.4
 	github.com/google/go-tpm-tools/verifier v0.4.4
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/oauth2 v0.23.0

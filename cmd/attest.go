@@ -80,6 +80,8 @@ hardware and guarantees a fresh quote.
 		attestOpts := client.AttestOpts{}
 		attestOpts.Nonce = nonce
 
+		fmt.Println("Adding hardware devices options")
+
 		// Add logic to open other hardware devices when required.
 		switch teeTechnology {
 		case SevSnp:
@@ -107,6 +109,8 @@ hardware and guarantees a fresh quote.
 		if err != nil {
 			return fmt.Errorf("failed to retrieve TCG Event Log: %w", err)
 		}
+
+		fmt.Println("Requesting attestation")
 
 		attestation, err := attestationKey.Attest(attestOpts)
 		if err != nil {
